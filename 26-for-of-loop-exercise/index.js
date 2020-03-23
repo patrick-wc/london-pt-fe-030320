@@ -60,10 +60,6 @@ function getEvenNumbersFromMixedArray( integers ) {
     }
     return newArray;
 }
-console.log( getEvenNumbersFromMixedArray( ["kitten", 34, "puppy", 12, "24", 64, 1, 5, 2, 8, "panda"] ) );
-
-
-// console.log( getEvenNumbersFromMixedArray( ["1", "2", "three", "dave", "4"] ) );
 
 
 /**
