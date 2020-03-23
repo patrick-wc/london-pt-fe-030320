@@ -47,7 +47,7 @@ function getAllValuesAsString( object ) {
 function propertyValueString( object ) {
     for( const key in object ) {
         console.log( `${key}: ${object[key]}`);
-    }
+    } 
 }
 // const testObject = {
 //     property: "name",
