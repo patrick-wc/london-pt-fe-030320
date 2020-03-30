@@ -1,10 +1,12 @@
 // install and  import "readline-sync" npm package before you do exercises
-
+const readlineSync = require("readline-sync");
 /**
  * Exercise 1
  *
  * ask user for a name and assign a response to variable {name}
  */
+
+const name = readlineSync.question("What is your name mate? ");
 
 //===== DO NOT TOUCH THIS BLOCK =====
 console.log(`Hi ${name}!`);
@@ -24,6 +26,32 @@ console.log("=====================");
  * you get correct symbol
  */
 
+let selectedSymbol = "";
+function userSymbol() {
+  let mathsSymbols = ["+", "-", "*", "/"];
+  selectedSymbol = readlineSync.question(
+    "Shall we do some maths? Which mathematical symbol are we using? Please pick one from +, -, * or / "
+  );
+
+  //   console.log("Is the selected symbol included in mathsSymbols?");
+  //   let checkBoolean = mathsSymbols.includes(selectedSymbol);
+  //   console.log(checkBoolean);
+
+  //   if (checkSymbol.includes(mathsSymbols) === false) {
+  //     console.log("nah, user did not pick one from +, -, * or /");
+  //   } else {
+  //     console.log("Hooray, we checked if the selectedSymbol ");
+  //   }
+
+  while (mathsSymbols.includes(selectedSymbol) === false) {
+    selectedSymbol = readlineSync.question(
+      "Sorry, you did not pick +, -, * or / "
+    );
+  }
+}
+
+userSymbol();
+
 /**
  * Exercise 3
  *
@@ -32,6 +60,24 @@ console.log("=====================");
  * NOTE: if the user will respond with wrong value, ask again, until
  * you get a number
  */
+let number1 = readlineSync.questionInt("Please enter the first number: ");
+// function userNumber1() {
+//   number1 = readlineSync.question("Please enter the first number: ");
+
+//   // convert string to number
+//   number1 = parseInt(number1);
+
+//   while (Number.isInteger(number1) === false) {
+//     number1 = readlineSync.question(
+//       "Sorry, you did not pick a number. Pick a number: "
+//     );
+
+//     // convert string to number
+//     number1 = parseInt(number1);
+//   }
+// }
+
+// userNumber1();
 
 /**
  * Exercise 4
@@ -41,6 +87,24 @@ console.log("=====================");
  * NOTE: if the user will respond with wrong value, ask again, until
  * you get a number
  */
+let number2 = readlineSync.questionInt("Please enter the first number: ");
+// function userNumber2() {
+//   number2 = readlineSync.question("Please enter the second number: ");
+
+//   // convert string to number
+//   number2 = parseInt(number2);
+
+//   while (Number.isInteger(number2) === false) {
+//     number2 = readlineSync.question(
+//       "Sorry, you did not pick a number. Pick a number: "
+//     );
+
+//     // convert string to number
+//     number2 = parseInt(number2);
+//   }
+// }
+
+// userNumber2();
 
 /**
  * Exercise 5
@@ -50,6 +114,8 @@ console.log("=====================");
  *
  * show the result to the user
  */
+
+const result = eval(`${number1} ${selectedSymbol} ${number2}`);
 
 console.log("=====================");
 console.log(`Here you go, the result is ${result}`);
