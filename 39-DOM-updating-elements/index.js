@@ -8,18 +8,34 @@
  * create a function {setTitle} which takes a string as an argument
  * and displays it in the h1
  */
+const setTitle = (string) => {
+  const h1 = document.querySelector("h1");
+  h1.innerText = string;
+};
 
 /**
  * Exercise 2
  * create a function {appendToTitle} which takes a string as an argument
  * and appends it to existing h1 text
  */
+const appendToTitle = (string) => {
+  const h1 = document.querySelector("h1");
+  const h1Text = h1.innerText;
+  h1AppendedText = h1Text + string;
+  h1.innerText = h1AppendedText;
+};
 
 /**
  * Exercise 3
- * create a function {prependToTitle} which takes a string as an argument
+ * create a const {prependToTitle = }  =>which takes a string as an argument
  * and prepends it to existing h1 element text
  */
+function prependToTitle(string) {
+  const h1 = document.querySelector("h1");
+  const h1Text = h1.innerText;
+  h1AppendedText = string + h1Text;
+  h1.innerText = h1AppendedText;
+}
 
 /**
  * Exercise 4
@@ -28,12 +44,22 @@
  * text is displayed inside that element. The element should the tag name
  * passed into the function
  */
+const setInnerHTMLForDiv = (tagName, text) => {
+  let div = document.querySelector("div");
+
+  div.innerHTML = `<${tagName}>${text}</${tagName}>`;
+};
 
 /**
  * Exercise 5
  * create a function {addPtoDivWithText} which takes a string as an argument
  * and uses innerHTML to add a p tag containing the text into the div
  */
+const pushPtoDivWithText = (string) => {
+  let div = document.querySelector("div");
+
+  div.innerHTML += `<p>${string}</p>`;
+};
 
 /**
  * Exercise 6
@@ -42,6 +68,11 @@
  * as arguments and set it as a src and alt attributes values
  * for existing img
  */
+const setSrcToImage = (url, imgDescription) => {
+  let img = document.querySelector("img");
+  img.setAttribute("src", url);
+  img.setAttribute("alt", imgDescription);
+};
 
 /**
  * Exercise 7
@@ -53,6 +84,13 @@
  *
  * Also add an attribute that opens your page in a new tab
  */
+const setCodersInHoodsLink = (url, text) => {
+  let aTag = document.querySelector("a");
+  aTag.setAttribute("href", url);
+  aTag.setAttribute("target", "_blank");
+  aTag.setAttribute("rel", "noopener");
+  aTag.innerText = text;
+};
 
 /**
  * Exercise 8
@@ -60,6 +98,10 @@
  * create a function {disableResetBtn} which will disable button
  * with class "reset"
  */
+const disableResetBtn = () => {
+  let button = document.querySelector(".reset");
+  button.setAttribute("disabled", "");
+};
 
 /**
  * Exercise 9
@@ -67,6 +109,14 @@
  * create a function {disableBtns} which takes class name as an argument
  * and disable all buttons with this class name
  */
+const disableBtns = (className) => {
+  let buttons = document.querySelectorAll(`.${className}`);
+  console.log(buttons);
+
+  buttons.forEach((element) => {
+    element.setAttribute("disabled", "");
+  });
+};
 
 /**
  * Exercise 10
@@ -78,6 +128,12 @@
  * NOTE: We've added some CSS so when your classes are added,
  * you will see a difference
  */
+const addClassToLi = () => {
+  let ulListItems = document.querySelectorAll("ul.list > li");
+  [...ulListItems].forEach((element, i) => {
+    element.classList.add(`list_item_${i}`);
+  });
+};
 
 /**
  * Exercise 11
@@ -85,6 +141,12 @@
  *  create a function {removeListItemClass} which removes the class
  * "list_item" from all li elements with this class
  */
+const removeListItemClass = () => {
+  liElements = document.querySelectorAll("li.list_item");
+  liElements.forEach((element) => {
+    element.classList.remove("list_item");
+  });
+};
 
 /**
  * Exercise 12
@@ -93,6 +155,10 @@
  * a CSS selector. Use to selector to find an element, then add
  * the id to the element
  */
+const addId = (id, cssSelector) => {
+  let element = document.querySelector(cssSelector);
+  element.setAttribute("id", id);
+};
 
 /**
  * Exercise 13
@@ -105,3 +171,9 @@
  * use the selector to find all the elements which match, then
  * set the CSS property to the value
  */
+const setStyles = (cssPropName, cssPropValue, cssSelector) => {
+  let elements = document.querySelectorAll(cssSelector);
+  elements.forEach((element) => {
+    element.setAttribute("style", `${cssPropName}:${cssPropValue}`);
+  });
+};

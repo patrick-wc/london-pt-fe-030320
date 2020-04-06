@@ -4,7 +4,7 @@ const readlineSync = require("readline-sync");
 let selectedItems = {
   book: "",
   movie: "",
-  nextTrip: ""
+  nextTrip: "",
 };
 
 const movies = [
@@ -14,7 +14,7 @@ const movies = [
   "No time to die",
   "Bloodshot",
   "Onward",
-  "Sonic"
+  "Sonic",
 ];
 
 const books = [
@@ -24,7 +24,7 @@ const books = [
   "The night watchman",
   "All adults here",
   "Dear Edward",
-  "Grown ups"
+  "Grown ups",
 ];
 
 const countries = [
@@ -34,7 +34,7 @@ const countries = [
   "Spain",
   "Portugal",
   "Denmark",
-  "Netherland"
+  "Netherland",
 ];
 
 /**
@@ -76,7 +76,7 @@ function subMenuBooks() {
   }
 }
 
-subMenuBooks();
+// subMenuBooks();
 
 /**
  * Exercise 2
@@ -119,7 +119,7 @@ function subMenuMovies() {
   }
 }
 
-subMenuMovies();
+// subMenuMovies();
 
 /**
  * Exercise 3
@@ -160,7 +160,7 @@ function subMenuDestinations() {
   }
 }
 
-subMenuDestinations();
+// subMenuDestinations();
 
 /**
  * Exercise 4
