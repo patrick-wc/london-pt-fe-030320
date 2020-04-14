@@ -16,12 +16,11 @@ const action = (symbol) => {
 
   if (symbol === "+") {
     counter += step;
-  }
-  if (symbol === "-") {
+    counterValue.innerText = counter;
+  } else if (symbol === "-") {
     counter -= step;
+    counterValue.innerText = counter;
   }
-
-  counterValue.innerText = counter;
 
   //   counter_value = counter;
   //   console.log(counterValue);
@@ -94,7 +93,7 @@ const autoDecrement = () => {
   const autoDecBtn = document.querySelector("#auto_decrement");
 
   autoDecBtn.addEventListener("click", (event) => {
-    clearInterval(intervalId);
+    clearInterval();
     intervalId = setInterval(() => {
       action("-");
     }, 1000);
@@ -116,7 +115,7 @@ const autoIncrement = () => {
   const autoIncBtn = document.querySelector("#auto_increment");
 
   autoIncBtn.addEventListener("click", (event) => {
-    clearInterval(intervalId);
+    clearInterval();
     intervalId = setInterval(() => {
       action("+");
     }, 1000);
