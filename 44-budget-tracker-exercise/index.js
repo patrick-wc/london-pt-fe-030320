@@ -271,6 +271,7 @@ const setRemainingBudget = (totalSpent) => {
   } else {
     // update budget
     budgetEl.innerText = `£${remainingBudget}`;
+    return true;
   }
 };
 
