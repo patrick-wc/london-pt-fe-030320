@@ -1,3 +1,12 @@
+Object.defineProperty(global.Element.prototype, "innerText", {
+  get() {
+    return this.textContent;
+  },
+  set(str) {
+    this.innerHTML = this.textContent = str;
+  },
+});
+
 const form = document.querySelector("form");
 const result = document.querySelector(".result");
 const input = document.querySelector("input");
@@ -17,6 +26,32 @@ const input = document.querySelector("input");
  * in {result} element, otherwise render
  * `Request failed with status code: {errorCode}`
  */
+const getResponse = (url) => {
+  fetch(url).then((response) => {
+    if (response.ok) {
+      renderLink(url);
+    } else {
+      renderError(response.status);
+    }
+  });
+};
+
+// getResponse("https://cat-fact.herokuapp.com/facts");
+
+const renderLink = (url) => {
+  result.innerHTML = "Valid link! ";
+
+  let a = document.createElement("a");
+  a.setAttribute("target", "_blank");
+  a.setAttribute("rel", "noopener");
+  a.setAttribute("href", url);
+  a.innerHTML = url;
+  result.append(a);
+};
+
+const renderError = (statusCode) => {
+  result.innerHTML = `Request failed with status code: ${statusCode}`;
+};
 
 /**
  * Description of the application:
@@ -31,3 +66,16 @@ const input = document.querySelector("input");
  * 5. When I focus on input, it should clear my input and hide
  * {result}
  */
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  //   console.log(`form input when submitted was: ${input.value}`);
+  if (input.value.length > 0) {
+    getResponse(input.value);
+  }
+});
+
+input.addEventListener("focus", (event) => {
+  input.value = "";
+  result.innerHTML = "";
+});

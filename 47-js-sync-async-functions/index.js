@@ -19,23 +19,28 @@ const syncCookIngredient = ({ name, time }) => {
  *
  * create a function {syncCookMeal} which will recieve an
  * array of {ingredientsToCook}, (similar to the array
- * defined on line 1) and call {syncCookIngredient} 
+ * defined on line 1) and call {syncCookIngredient}
  * for each ingredient in the array
- * 
+ *
  * After all the ingredients are cooked,
  * log the message "Soup is ready to serve"
  */
 
-
-
+function syncCookMeal(ingredients) {
+  for (let i = 0; i < ingredients.length; i++) {
+    syncCookIngredient(ingredients[i]);
+  }
+  console.log("Soup is ready to serve");
+}
+// syncCookMeal(ingredients);
 /**
  * Exercise 2
  *
  * create a function {asyncCookIngredient} which takes 1 argument:
- * 
+ *
  * an {ingredient} object (like the objects in the array on line 1)
  * with 2 keys: name and time.
- * 
+ *
  * Log out the message "Start cooking INGREDIENT_NAME"
  * then after the cooking time has elapsed,
  * log out "INGREDIENT_NAME cooked!". Both times displaying
@@ -43,14 +48,51 @@ const syncCookIngredient = ({ name, time }) => {
  *
  */
 
+const asyncCookIngredient = async ({ name, time }) => {
+  console.log(`Start cooking ${name}`);
+  return await new Promise((resolve) => {
+    setTimeout(() => {
+      console.log(`${name} cooked!`);
+      resolve(name);
+    }, time);
+  });
+};
+
+// const logData = (data) => {
+//   console.log(data);
+// };
+
+// const fetchData = async (url) => {
+//   fetch(url)
+//     .then((response) => response.json())
+//     .then((data) => logData(data))
+
+//   return await fetch(url).then((response) => response.json());
+// };
+
+// const dataHandler = async () => {
+//   const kittens = await fetchData('google.com/kittens')
+//   console.log(kittens)
+// }
+
 /**
  * Exercise 3
  *
- * create a function {asyncCookMeal} which will which will recieve an
+ * create a function {asyncCookMeal} which will  receive an
  * array of {ingredientsToCook} and call {asyncCookIngredient} for
- * eahc ingredient
- * 
+ * each ingredient
+ *
  * After all the ingredients are cooked,
  * log the message "Soup is ready to serve"
  */
 
+const asyncCookMeal = (ingredientsToCook) => {
+  const ingredientsPromises = ingredientsToCook.map(async (ingredient) => {
+    return await asyncCookIngredient(ingredient);
+  });
+
+  Promise.all(ingredientsPromises).then(() =>
+    console.log("Soup is ready to serve")
+  );
+};
+asyncCookMeal(ingredients);
