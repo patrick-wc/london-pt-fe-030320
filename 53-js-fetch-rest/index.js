@@ -13,30 +13,15 @@ const baseURL = "http://localhost:3000";
 /**
  * Exercise 1
  *
- * create an async function {getComments}, which 
+ * create an async function {getComments}, which
  * gets data from URL and returns the data as JS objects
  *
  * Note: test this function with an URL from your json-server API
  */
-const getComments = async (url) => {
-  if (!url) {
-    url = `${baseURL}/comments`;
-  }
-  const configObject = {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-  };
-
-  return await fetch(url, configObject)
-    .then((response) => response.json())
-    .then((comments) => {
-      console.log(comments);
-    });
+const getComments = async () => {
+  return await fetch(`${baseURL}/comments`).then((response) => response.json());
 };
-// getComments(`${baseURL}/comments`);
+getComments();
 
 /**
  * Exercise 2
@@ -59,14 +44,15 @@ const postComment = async (newComment) => {
     body: JSON.stringify(newComment),
   };
 
-  return await fetch(`${baseURL}/comments`, configObject)
-    .then((response) => response.json())
-    .then((the_response) => {
-      console.log(the_response);
+  return await fetch("http://localhost:3000/comments", configObject)
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw "Oops something went wrong!";
+      }
     })
-    .catch((error) => {
-      console.log(`Oops something went wrong!`);
-    });
+    .catch((error) => error);
 };
 // const commentToAdd = {
 //   body: "Comment 2",
@@ -103,14 +89,15 @@ const patchComment = async (comment, newCommentBody) => {
     body: JSON.stringify(commentObject),
   };
 
-  return await fetch(`${baseURL}/comments/${comment}/`, configObject)
-    .then((response) => response.json())
-    .then((the_response) => {
-      console.log(the_response);
+  return await fetch(`${baseURL}/comments/${comment.id}/`, configObject)
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw "Oops we couldn't update that!";
+      }
     })
-    .catch((error) => {
-      console.log(`Oops we couldn't update that!`);
-    });
+    .catch((error) => error);
 };
 // const commentToPatchId = "2";
 // const commentToPatchBody = "Comment 2 Update Body Text";
@@ -138,13 +125,14 @@ const putComment = async (comment) => {
   };
 
   return await fetch(`${baseURL}/comments/${comment.id}/`, configObject)
-    .then((response) => response.json())
-    .then((the_response) => {
-      console.log(the_response);
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw "Oops we couldn't update that!";
+      }
     })
-    .catch((error) => {
-      console.log(`Oops we couldn't update that!`);
-    });
+    .catch((error) => error);
 };
 // const commentToPut = {
 //   body: "Update Comment 2 with PUT",
@@ -173,10 +161,14 @@ const deleteComment = async (comment) => {
   };
 
   return await fetch(`${baseURL}/comments/${comment.id}/`, configObject)
-    .then((response) => response.json())
-    .then((the_response) => {
-      return "Deleted!";
-    });
+    .then((response) => {
+      if (response.ok) {
+        return "Deleted!";
+      } else {
+        throw "That could not be deleted!";
+      }
+    })
+    .catch((error) => error);
 };
 // const commentToDelete = {
 //   id: 2,
