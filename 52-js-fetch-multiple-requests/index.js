@@ -84,13 +84,3 @@ searchEl.addEventListener("input", (event) => {
 
   renderSwornMembers(matchingSwornMembers);
 });
-
-/**
- * HTML for each member:
- * <li>
- *     <p class="name">Bilbo Baggins</p>
- *     <p class="life">1777 – 1888</p>
- *     <p class="gender"><strong>Gender: </strong>Male</p>
- *     <p class="culture"><strong>Culture: </strong>Hobbit</p>
- * </li>
- */
