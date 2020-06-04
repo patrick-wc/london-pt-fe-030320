@@ -1,0 +1,38 @@
+body {
+  background-color: #232323;
+}
+
+.app {
+  max-width: 370px;
+  margin: 0 auto;
+  height: 100vh; /* for older browsers who do not support 100vh */
+  height: stretch; /* respects the menu bar in iOS */
+  background-color: #fff;
+}
+
+.navigation ul {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.navigation ul li:first-of-type {
+  margin-right: auto;
+}
+
+.navigation ul li:last-of-type {
+  margin-left: auto;
+}
+
+.navigation a {
+  display: inline-block;
+  padding: 24px;
+  text-decoration: none;
+}
+
+.navigation a:focus,
+.navigation a:hover {
+  text-decoration: underline;
+}
