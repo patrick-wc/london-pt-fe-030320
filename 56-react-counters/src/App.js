@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import Counter from "./components/Counter/";
 /**
  * 1. Create component Counter which will have:
  * - button with class {increment}
@@ -10,12 +11,16 @@ import "./App.css";
  *
  * 2. In App component add button with class {newCounter}
  * 3. when you click {newCounter} you should add new counter to view
- * 
+ *
  * NOTE: feel free to add some CSS to style your counters.
  */
 
 function App() {
-	return <div className="App"></div>;
+  return (
+    <div className="App">
+      <Counter />
+    </div>
+  );
 }
 
 export default App;
