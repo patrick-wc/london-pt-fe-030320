@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
-import Counter from "./components/Counter/";
+import Counter from "./Counter";
 /**
  * 1. Create component Counter which will have:
  * - button with class {increment}
@@ -16,9 +16,18 @@ import Counter from "./components/Counter/";
  */
 
 function App() {
+  const [newCounter, setNewCounter] = useState([]);
+  const newCounters = () => {
+    setNewCounter((newCounter) => [...newCounter, Counter]);
+  };
   return (
     <div className="App">
-      <Counter />
+      <button onClick={newCounters} className="newCounter">
+        New counter
+      </button>
+      {newCounter.map((Add) => (
+        <Add />
+      ))}
     </div>
   );
 }

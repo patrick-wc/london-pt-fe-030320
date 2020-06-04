@@ -8,7 +8,7 @@ const Counter = () => {
 
   return (
     <div>
-      <h1>State value: {counter}</h1>
+      <h1>{counter}</h1>
       <div>
         <button className="increment" onClick={increaseCounter}>
           Increase counter
