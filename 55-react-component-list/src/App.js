@@ -3,6 +3,13 @@ import "./App.css";
 
 const APP_TITLE = "Awesome Pet Shop";
 
+let today = new Date();
+const dd = String(today.getDate());
+const mm = String(today.getMonth() + 1); //January is 0!
+const yyyy = today.getFullYear();
+
+today = mm + "/" + dd + "/" + yyyy;
+
 /**
  * Exercise: 1
  *
@@ -17,7 +24,17 @@ const APP_TITLE = "Awesome Pet Shop";
 const App = () => {
   const animals = ["cat", "dog", "giraffe", "pig", "lion", "rabbit"];
 
-  return <div className="app"></div>;
+  return (
+    <div className="app">
+      <h1>{APP_TITLE}</h1>
+      <p>{today}</p>
+      <ul>
+        {animals.map((animalName) => (
+          <li key={animalName}>{animalName}</li>
+        ))}
+      </ul>
+    </div>
+  );
 };
 
 export default App;
