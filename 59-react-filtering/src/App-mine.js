@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./App.css";
 
 /**
@@ -21,21 +21,19 @@ const App = () => {
   const [contacts, setContacts] = useState([]);
   const [selectedContact, setSelectedContact] = useState("All");
 
-  if (contacts.length === 0) {
-    fetch("http://localhost:3000/contacts")
-      .then((response) => response.json())
-      .then((res) => setContacts(res));
-  }
+  fetch("http://localhost:3001/contacts")
+    .then((response) => response.json())
+    .then((res) => setContacts(res));
 
   const contactsToRender =
     selectedContact === "All"
       ? contacts
       : contacts.filter((contact) =>
-          contact.name.toLowerCase().match(selectedContact.toLowerCase())
+          contact.name.toLowerCase().match(selectedContact)
         );
 
-  const handleChange = (e) => {
-    setSelectedContact(e.target.value.toLowerCase());
+  const handleChange = (event) => {
+    setSelectedContact(event.target.value);
   };
 
   return (
@@ -43,13 +41,13 @@ const App = () => {
       <input
         type="text"
         onChange={handleChange}
-        placeholder="Type the company name to search..."
+        placeholder="Filter by contact name here..."
       />
       <ul>
         {contactsToRender.map((contact) => (
-          <li>
+          <li key={contact.id}>
             <p>{contact.name}</p>
-            <p className={"company"}>{contact.company}</p>
+            <p className="company">{contact.company}</p>
           </li>
         ))}
       </ul>
