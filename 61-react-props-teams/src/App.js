@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import "./App.css";
+// import "./App.css";
+import Team from "./components/Team/Team";
 
 /**
  * Exercise:
@@ -36,7 +37,51 @@ const App = () => {
     "Mat",
   ]);
 
-  return <div className="app"></div>;
+  const [teamOne, setTeamOne] = useState([]);
+  const [teamTwo, setTeamTwo] = useState([]);
+
+  const removePlayer = (name) => {
+    const filterdPlayers = players.filter((player) => player !== name);
+    setPlayers(filterdPlayers);
+  };
+
+  const clickHandler = (e) => {
+    // console.log("clickHandler");
+
+    const value = e.target.dataset.team;
+    // console.log(value);
+
+    const name = e.target.dataset.player;
+    // console.log(name);
+
+    if (value === "1") {
+      setTeamOne([...teamOne, name]);
+      removePlayer(name);
+    } else if (value === "2") {
+      setTeamTwo([...teamTwo, name]);
+      removePlayer(name);
+    }
+  };
+
+  return (
+    <div className="app">
+      <ul className="players">
+        {players.map((player, index) => (
+          <li key={index}>
+            <span>{player}</span>
+            <button onClick={clickHandler} data-team="1" data-player={player}>
+              Team 1
+            </button>
+            <button onClick={clickHandler} data-team="2" data-player={player}>
+              Team 2
+            </button>
+          </li>
+        ))}
+      </ul>
+      <Team players={teamOne} teamName="Team One Players:" />
+      <Team players={teamTwo} teamName="Team Two Players:" />
+    </div>
+  );
 };
 
 export default App;
